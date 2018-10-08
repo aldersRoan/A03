@@ -1,5 +1,6 @@
 package a03;
 
+import java.util.Arrays;
 import java.util.Comparator;
 
 public class Term implements Comparable<Term>{
@@ -60,7 +61,37 @@ public class Term implements Comparable<Term>{
 	 */
 	@Override
 	public String toString() {	
-		return String.format("%10f%t%s", this.weight, this.query);
+		return Double.toString(this.weight) + "\t" + this.query; 
+	}
+
+	/**
+	 * Test method for Term class.
+	 * @param args
+	 */
+	public static void main(String args[]) {
+		Term[] terms = { new Term("happy", 890), new Term("hollow", 90), new Term("hello", 9), new Term("hippy", 8) };
+
+		for (Term term : terms) {
+			System.out.println(term);
+		}
+		System.out.println();
+		
+		Arrays.sort(terms);
+		for (Term term : terms)
+			System.out.println(term);
+		System.out.println();
+		
+		Arrays.sort(terms, Term.byReverseWeightOrder());
+		for (Term term : terms)
+			System.out.println(term);
+		System.out.println();
+		
+		Arrays.sort(terms, Term.byPrefixOrder(5));
+		for (Term term:terms)
+			System.out.println(term);
+
 	}
 
 }
+
+
