@@ -43,24 +43,22 @@ public class Term implements Comparable<Term>{
 			throw new IllegalArgumentException("Input argument must be a nonnegative number");
 		}
 		
-		return null; //TODO
-		
+		return (t1, t2) -> t1.query.substring(0,r).compareToIgnoreCase(t2.query.substring(0, r));
 	}
-	
 
-	@Override
 	/**
 	 * Compare the terms in lexicographic order by query.
 	 */
+	@Override
 	public int compareTo(Term other) {
 		return this.query.compareToIgnoreCase(other.query);
 	}
-	
-	@Override
+
 	/**
 	 * Return a string representation of the term in the following format:
 	 * the weight, followed by a tab, followed by the query.
 	 */
+	@Override
 	public String toString() {	
 		return String.format("%10f%t%s", this.weight, this.query);
 	}
