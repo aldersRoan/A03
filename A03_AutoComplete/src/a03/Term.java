@@ -43,7 +43,6 @@ public class Term implements Comparable<Term>{
 		if(r < 0 ) {
 			throw new IllegalArgumentException("Input argument must be a nonnegative number");
 		}
-		
 		return (t1, t2) -> t1.query.substring(0,r).compareToIgnoreCase(t2.query.substring(0, r));
 	}
 
@@ -89,6 +88,10 @@ public class Term implements Comparable<Term>{
 		Arrays.sort(terms, Term.byPrefixOrder(5));
 		for (Term term:terms)
 			System.out.println(term);
+		
+		Term[] term2 = { new Term("jam jar", 8.0), new Term("jar of jam jars", 6.0)}; 
+		Comparator<Term> prefixComp = byPrefixOrder(3);
+		System.out.println(prefixComp.compare(term2[1], term2[0]));
 
 	}
 
