@@ -49,8 +49,7 @@ public class Autocomplete {
 		}
 		
 		Arrays.sort(matches, Term.byReverseWeightOrder());
-		return matches; //TODO
-		
+		return matches; 
 	}
 	
 	/**

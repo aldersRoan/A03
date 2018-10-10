@@ -90,7 +90,7 @@ public class Term implements Comparable<Term>{
 			System.out.println(term);
 		
 		Term[] term2 = { new Term("jam jar", 8.0), new Term("jar of jam jars", 6.0)}; 
-		Comparator<Term> prefixComp = byPrefixOrder(3);
+		Comparator<Term> prefixComp = byPrefixOrder(1);
 		System.out.println(prefixComp.compare(term2[1], term2[0]));
 
 	}
