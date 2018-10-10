@@ -1,6 +1,11 @@
 package a03;
 
+import java.util.Arrays;
+
+import edu.princeton.cs.algs4.Heap;
+
 public class Autocomplete {
+	private Term[] terms;
 	
 	/**
 	 * Initialize the data structure from the given array of terms.
@@ -11,6 +16,11 @@ public class Autocomplete {
 			throw new NullPointerException("Input arguments cannot be null");
 		}
 		
+		this.terms = new Term[terms.length];
+		for(int i = 0; i < terms.length; i++) {
+			this.terms[i] = terms[i];
+		}
+		Heap.sort(terms);
 		
 	}
 	
@@ -24,8 +34,22 @@ public class Autocomplete {
 		if(prefix.equals(null)) {
 			throw new NullPointerException("Input arguments cannot be null");
 		}
+		Term term = new Term(prefix, 0);
 		
-		return null; //TODO
+		int firstIndex = BinarySearchDeluxe.firstIndexOf(terms, term, Term.byPrefixOrder(prefix.length()));
+		if(firstIndex == -1) {
+			return new Term[0];
+		}
+		
+		int lastIndex = BinarySearchDeluxe.lastIndexOf(terms, term, Term.byPrefixOrder(prefix.length()));
+		
+		Term[] matches = new Term [1 + (lastIndex - firstIndex)];
+		for(int i = 0; i < matches.length; i++) {
+			matches[i] = terms[firstIndex++];
+		}
+		
+		Arrays.sort(matches, Term.byReverseWeightOrder());
+		return matches; //TODO
 		
 	}
 	
@@ -38,9 +62,11 @@ public class Autocomplete {
 		if(prefix.equals(null)) {
 			throw new NullPointerException("Input arguments cannot be null");
 		}
+		Term term = new Term(prefix, 0);
+		int firstIndex = BinarySearchDeluxe.firstIndexOf(terms, term, Term.byPrefixOrder(prefix.length()));
+		int lastIndex = BinarySearchDeluxe.lastIndexOf(terms, term, Term.byPrefixOrder(prefix.length()));
 		
-		return 0; //TODO
-		
+		return 1 + (lastIndex - firstIndex);
 	}
 
 }
