@@ -18,11 +18,8 @@ public class Autocomplete {
 			throw new NullPointerException("Input arguments cannot be null");
 		}
 		
-		this.terms = new Term[terms.length];
-		for(int i = 0; i < terms.length; i++) {
-			this.terms[i] = terms[i];
-		}
-		Heap.sort(terms);
+		this.terms = terms;
+		Arrays.sort(terms);
 		
 	}
 	
@@ -44,12 +41,8 @@ public class Autocomplete {
 		}
 		
 		int lastIndex = BinarySearchDeluxe.lastIndexOf(terms, term, Term.byPrefixOrder(prefix.length()));
-		
-		Term[] matches = new Term [1 + (lastIndex - firstIndex)];
-		for(int i = 0; i < matches.length; i++) {
-			matches[i] = terms[firstIndex++];
-		}
-		
+				
+		Term[] matches = Arrays.copyOfRange(terms, firstIndex, lastIndex);
 		Arrays.sort(matches, Term.byReverseWeightOrder());
 		return matches; 
 	}
