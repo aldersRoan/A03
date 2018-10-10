@@ -5,8 +5,6 @@ import java.util.Arrays;
 public class Autocomplete {
 	private Term[] terms;
 	
-	//ingore
-	
 	/**
 	 * Initialize the data structure from the given array of terms. 
 	 * @param terms
