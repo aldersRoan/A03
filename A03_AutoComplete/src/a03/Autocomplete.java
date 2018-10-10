@@ -7,6 +7,10 @@ public class Autocomplete {
 	 * @param terms
 	 */
 	public Autocomplete(Term[] terms) {
+		if(terms.equals(null)) {
+			throw new NullPointerException("Input arguments cannot be null");
+		}
+		
 		
 	}
 	
@@ -17,6 +21,10 @@ public class Autocomplete {
 	 * @return
 	 */
 	public Term[] allMatches(String prefix) {
+		if(prefix.equals(null)) {
+			throw new NullPointerException("Input arguments cannot be null");
+		}
+		
 		return null; //TODO
 		
 	}
@@ -27,6 +35,10 @@ public class Autocomplete {
 	 * @return
 	 */
 	public int numberOfMatches(String prefix) {
+		if(prefix.equals(null)) {
+			throw new NullPointerException("Input arguments cannot be null");
+		}
+		
 		return 0; //TODO
 		
 	}
