@@ -43,7 +43,23 @@ public class Term implements Comparable<Term>{
 		if(r < 0 ) {
 			throw new IllegalArgumentException("Input argument must be a nonnegative number");
 		}
-		return (t1, t2) -> t1.query.substring(0,r).compareToIgnoreCase(t2.query.substring(0, r));
+
+		return new Comparator<Term>() {
+
+			@Override
+			public int compare(Term t1, Term t2) {
+				String query1;
+				String query2;
+				
+				if(t1.query.length() < r) query1 = t1.query;
+				else query1 = t1.query.substring(0, r);
+				
+				if(t2.query.length() < r) query2 = t2.query;
+				else query2 = t2.query.substring(0, r);
+				
+				return query1.compareToIgnoreCase(query2);
+			}
+		};
 	}
 
 	/**
