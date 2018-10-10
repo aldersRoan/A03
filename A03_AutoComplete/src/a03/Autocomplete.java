@@ -7,8 +7,10 @@ import edu.princeton.cs.algs4.Heap;
 public class Autocomplete {
 	private Term[] terms;
 	
+	//ingore
+	
 	/**
-	 * Initialize the data structure from the given array of terms.
+	 * Initialize the data structure from the given array of terms. 
 	 * @param terms
 	 */
 	public Autocomplete(Term[] terms) {
