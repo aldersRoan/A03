@@ -1,6 +1,5 @@
 package a03;
 
-import java.util.Arrays;
 import java.util.Comparator;
 
 public class Term implements Comparable<Term>{
@@ -44,30 +43,29 @@ public class Term implements Comparable<Term>{
 			throw new IllegalArgumentException("Input argument must be a nonnegative number");
 		}
 
-		return new Comparator<Term>() {
-
-			@Override
-			public int compare(Term t1, Term t2) {
-				String query1;
-				String query2;
-				
-				if(t1.query.length() < r) query1 = t1.query;
-				else query1 = t1.query.substring(0, r);
-				
-				if(t2.query.length() < r) query2 = t2.query;
-				else query2 = t2.query.substring(0, r);
-				
-				return query1.compareToIgnoreCase(query2);
-			}
+		return (t1, t2) -> {		
+			String query1 = queryLength(t1.query, r);
+			String query2 = queryLength(t2.query, r);
+			int comparison = query1.compareToIgnoreCase(query2);
+			
+			if(comparison < 0) return -1;
+			else if(comparison > 0) return 1;
+			else return 0;
 		};
+		
+	}
+
+	private static String queryLength(String query, int r) {
+		int queryLength = query.length() > r ? r : query.length();
+		return query.substring(0, queryLength);
 	}
 
 	/**
 	 * Compare the terms in lexicographic order by query.
 	 */
 	@Override
-	public int compareTo(Term other) {
-		return this.query.compareToIgnoreCase(other.query);
+	public int compareTo(Term that) {
+		return this.query.compareToIgnoreCase(that.query);
 	}
 
 	/**
@@ -78,39 +76,6 @@ public class Term implements Comparable<Term>{
 	public String toString() {	
 		return Double.toString(this.weight) + "\t" + this.query; 
 	}
-
-	/**
-	 * Test method for Term class.
-	 * @param args
-	 */
-	public static void main(String args[]) {
-		Term[] terms = { new Term("happy", 890), new Term("hollow", 90), new Term("hello", 9), new Term("hippy", 8) };
-
-		for (Term term : terms) {
-			System.out.println(term);
-		}
-		System.out.println();
-		
-		Arrays.sort(terms);
-		for (Term term : terms)
-			System.out.println(term);
-		System.out.println();
-		
-		Arrays.sort(terms, Term.byReverseWeightOrder());
-		for (Term term : terms)
-			System.out.println(term);
-		System.out.println();
-		
-		Arrays.sort(terms, Term.byPrefixOrder(5));
-		for (Term term:terms)
-			System.out.println(term);
-		
-		Term[] term2 = { new Term("jam jar", 8.0), new Term("jar of jam jars", 6.0)}; 
-		Comparator<Term> prefixComp = byPrefixOrder(1);
-		System.out.println(prefixComp.compare(term2[1], term2[0]));
-
-	}
-
 }
 
 

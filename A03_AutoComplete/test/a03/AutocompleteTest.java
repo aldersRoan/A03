@@ -18,7 +18,16 @@ class AutocompleteTest {
 
 	@Test
 	void testAllMatches() {
-		fail("Not yet implemented");
+		Term[] terms = {
+				new Term("company", 133159.0), 
+				new Term("complete", 78039.0),
+				new Term("companion", 60384.9),
+				new Term("completely", 52050.3),
+				new Term("comply", 44817.7)
+		};
+		Autocomplete matches = new Autocomplete(terms);
+		Term[] match1 = matches.allMatches("compa");
+		assertEquals(terms.length, match1.length);
 	}
 
 	@Test
