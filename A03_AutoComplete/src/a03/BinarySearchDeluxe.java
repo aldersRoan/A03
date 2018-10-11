@@ -25,10 +25,12 @@ public class BinarySearchDeluxe {
 		while(lo <= hi) {
 			int mid = lo + (hi - lo) / 2;
 
-			if(comparator.compare(key, a[mid]) < 0 || comparator.compare(a[mid -1], a[mid]) == 0) {
+			if(comparator.compare(key, a[mid]) < 0) {
 				hi = mid - 1;
 			} else if(comparator.compare(key, a[mid]) > 0) {
 				lo = mid + 1;
+			} else if(comparator.compare(a[mid -1], a[mid]) == 0) {
+				hi = mid - 1;
 			}
 			else return mid;
 		}
@@ -48,7 +50,7 @@ public class BinarySearchDeluxe {
 			throw new NullPointerException("Input arguments cannot be null");
 		}
 		int lo = 0;
-		int hi = a.length;
+		int hi = a.length - 1;
 		
 		if(comparator.compare(key, a[hi - 1]) == 0) return hi;
 		
@@ -58,7 +60,9 @@ public class BinarySearchDeluxe {
 			if(comparator.compare(key, a[mid]) < 0) {
 				hi = mid - 1;
 			}
-			else if(comparator.compare(key, a[mid]) > 0 || comparator.compare(a[mid + 1], a[mid]) == 0) {
+			else if(comparator.compare(key, a[mid]) > 0) {
+				lo = mid + 1;
+			} else if(comparator.compare(a[mid + 1], a[mid]) == 0) {
 				lo = mid + 1;
 			}
 			else return mid;

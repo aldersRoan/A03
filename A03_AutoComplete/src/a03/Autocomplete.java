@@ -37,8 +37,12 @@ public class Autocomplete {
 		}
 		
 		int lastIndex = BinarySearchDeluxe.lastIndexOf(terms, term, Term.byPrefixOrder(prefix.length()));
-				
-		Term[] matches = Arrays.copyOfRange(terms, firstIndex, lastIndex + 1);
+		Term[] matches = new Term[1 + lastIndex - firstIndex];
+		
+		for(int i = 0; i < matches.length; i++) {
+			matches[i] = terms[firstIndex++];
+		}
+
 		Arrays.sort(matches, Term.byReverseWeightOrder());
 		return matches; 
 	}
