@@ -80,6 +80,8 @@ import javax.swing.event.DocumentListener;
 import javax.swing.event.MouseInputAdapter;
 
 import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdOut;
 
 public class AutocompleteGUI extends JFrame {
     // for serializable classes
@@ -689,8 +691,10 @@ public class AutocompleteGUI extends JFrame {
      * dropdown menu
      */
     public static void main(String[] args) {
-        final String filename = "wiktionary.txt";
-        final int k = Integer.parseInt("10");
+    	StdOut.print("Please enter a filename: ");
+        final String filename = StdIn.readString();
+        StdOut.print("Enter the number of items displayed in the window: ");
+        final int k = StdIn.readInt();
         SwingUtilities.invokeLater(
                 new Runnable() {
                     public void run() {
