@@ -43,21 +43,11 @@ public class Term implements Comparable<Term>{
 			throw new IllegalArgumentException("Input argument must be a nonnegative number");
 		}
 
-		return (t1, t2) -> {		
-			String query1 = queryLength(t1.query, r);
-			String query2 = queryLength(t2.query, r);
-			int comparison = query1.compareToIgnoreCase(query2);
-			
-			if(comparison < 0) return -1;
-			else if(comparison > 0) return 1;
-			else return 0;
+		return (thisTerm, thatTerm) -> {		
+			String thisQuery = thisTerm.query.substring(0, Math.min(r, thisTerm.query.length()));
+			String thatQuery = thatTerm.query.substring(0, Math.min(r, thatTerm.query.length()));
+			return thisQuery.compareToIgnoreCase(thatQuery);
 		};
-		
-	}
-
-	private static String queryLength(String query, int r) {
-		int queryLength = query.length() > r ? r : query.length();
-		return query.substring(0, queryLength);
 	}
 
 	/**

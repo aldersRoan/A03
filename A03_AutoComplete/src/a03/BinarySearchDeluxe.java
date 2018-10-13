@@ -18,7 +18,7 @@ public class BinarySearchDeluxe {
 		}
 		
 		int lo = 0;
-		int hi = a.length;
+		int hi = a.length - 1;
 		
 		if(comparator.compare(key, a[lo]) == 0) return lo;
 		
@@ -29,10 +29,9 @@ public class BinarySearchDeluxe {
 				hi = mid - 1;
 			} else if(comparator.compare(key, a[mid]) > 0) {
 				lo = mid + 1;
-			} else if(comparator.compare(a[mid -1], a[mid]) == 0) {
+			} else if(comparator.compare(a[mid - 1], a[mid]) == 0) {
 				hi = mid - 1;
-			}
-			else return mid;
+			} else return mid;
 		}
 		return -1;
 	}
@@ -52,20 +51,20 @@ public class BinarySearchDeluxe {
 		int lo = 0;
 		int hi = a.length - 1;
 		
-		if(comparator.compare(key, a[hi - 1]) == 0) return hi;
+		if(comparator.compare(key, a[hi]) == 0) {
+			return hi;
+		}
 		
 		while(lo <= hi) {
 			int mid = lo + (hi - lo) / 2;
 			
 			if(comparator.compare(key, a[mid]) < 0) {
 				hi = mid - 1;
-			}
-			else if(comparator.compare(key, a[mid]) > 0) {
+			} else if(comparator.compare(key, a[mid]) > 0) {
 				lo = mid + 1;
 			} else if(comparator.compare(a[mid + 1], a[mid]) == 0) {
 				lo = mid + 1;
-			}
-			else return mid;
+			} else return mid;
 		}
 		return -1;
 	}
