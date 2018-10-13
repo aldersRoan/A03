@@ -2,15 +2,12 @@ package a03;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.Comparator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class TermTest {
-	private List<Term> terms;
-	private Term t = new Term("computer",13);
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -55,6 +52,13 @@ class TermTest {
 	}
 
 	@Test
+	void testByPrefixOrderIllegalArgumentException() {
+		assertThrows(IllegalArgumentException.class, () -> {
+			Term.byPrefixOrder(-1);			
+		});
+	}
+
+	@Test
 	void testByPrefixOrderLessThanR() {
 		Term term1 = new Term("to", 0);
 		Term term2 = new Term("tom", 0);
@@ -89,13 +93,34 @@ class TermTest {
 	}
 
 	@Test
-	void testCompareTo() {
-		fail("Not yet implemented");
+	void testCompareToLessThanZero() {
+		Term term1 = new Term("and", 0);
+		Term term2 = new Term("ate", 0);
+		boolean result = term1.compareTo(term2) < 0;
+		assertTrue(result);
+	}
+
+	@Test
+	void testCompareToEqualToZero() {
+		Term term1 = new Term("and", 0);
+		Term term2 = new Term("and", 0);
+		boolean result = term1.compareTo(term2) == 0;
+		assertTrue(result);
+	}
+
+	@Test
+	void testCompareToGreaterThanZero() {
+		Term term1 = new Term("and", 0);
+		Term term2 = new Term("ate", 0);
+		boolean result = term2.compareTo(term1) > 0;
+		assertTrue(result);
 	}
 
 	@Test
 	void testToString() {
-		fail("Not yet implemented");
+		Term term1 = new Term("Salt Lake City", 500);
+		Term term2 = new Term("Salt Lake City", 500);
+		assertEquals(term1.toString(), term2.toString());
 	}
 
 }

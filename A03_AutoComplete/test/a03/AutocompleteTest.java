@@ -33,8 +33,21 @@ class AutocompleteTest {
 	}
 
 	@Test
-	void testNumberOfMatches() {
-		fail("Not yet implemented");
+	void testAllMatchesNullPointerException() {
+		assertThrows(NullPointerException.class, () -> {
+			matches.allMatches(null);
+		});
 	}
 
+	@Test
+	void testNumberOfMatchesNullPointerException() {
+		assertThrows(NullPointerException.class, () -> {
+			matches.allMatches(null);
+		});
+	}
+
+	@Test
+	void testNumberOfMatches() {
+		assertEquals(2, matches.numberOfMatches("compa"));
+	}
 }

@@ -2,13 +2,21 @@ package a03;
 
 import java.util.Comparator;
 
+/**
+ * This class represents a term from autocomplete. It implements the Comparable interface
+ * and includes a compareTo method. It also includes two comparators. One which orders terms
+ * weight in reverse order. The second orders items based on a prefix in lexicographical order.
+ * 
+ * @author Aaron Sadler, Pace Wasden
+ *
+ */
 public class Term implements Comparable<Term>{
 	private String query;
 	private double weight;
 	
 	/**
 	 * Initialize a term with the given query string and weight
-	 * @param query
+	 * @param query 
 	 * @param weight
 	 */
 	public Term(String query, double weight) {

@@ -2,6 +2,15 @@ package a03;
 
 import java.util.Comparator;
 
+/**
+ * This class searches an array of terms based on key and a given comparator. 
+ * The class uses binary search to perform searches of a sorted array in log2(N) time.
+ * There are two methods. One searches for the first occurrence of a query in an array of terms.
+ * The second method searches for the last occurrence of a query in an array of terms.
+ * 
+ * @author Aaron Sadler, Pace Wasden
+ *
+ */
 public class BinarySearchDeluxe {
 
 	/**

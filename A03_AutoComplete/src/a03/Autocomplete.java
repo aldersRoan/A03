@@ -2,6 +2,16 @@ package a03;
 
 import java.util.Arrays;
 
+/**
+ * This class returns terms which match a given prefix. There are two methods.
+ * The allMatches method returns a sorted array by reverse weight order that includes
+ * all of the terms which match the given prefix. The second method returns the number of
+ * matches based on the given prefix.
+ * 
+ * @author Aaron Sadler, Pace Wasden
+ *
+ */
+
 public class Autocomplete {
 	private Term[] terms;
 	
