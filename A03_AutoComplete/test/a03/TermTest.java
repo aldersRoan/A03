@@ -1,9 +1,6 @@
 package a03;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.Comparator;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
